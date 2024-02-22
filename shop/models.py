@@ -14,17 +14,17 @@ def generate_random_code():
 class Customer(models.Model):
     full_name = models.CharField(max_length=100)
     email = models.EmailField(max_length=100)
-    customer_code = random_id = models.CharField(max_length=6, unique=True, default=generate_random_code)
+    customer_code = models.CharField(max_length=6, unique=True, default=generate_random_code)
 
 
 class Item(models.Model):
     item = models.CharField(max_length=100)
     unit = models.CharField(max_length=10)
-    price = models.DecimalField(decimal_places=2)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
 
 
 class Order(models.Model):
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, on_update=models.PROTECT, related_name='orders')
-    item_id = models.ForeignKey(Item, on_delete=models.CASCADE, on_update=models.PROTECT)
-    amount = models.DecimalField(decimal_places=2)
+    customer = models.ForeignKey(Customer, on_delete=models.PROTECT, related_name='orders')
+    item_id = models.ForeignKey(Item, on_delete=models.PROTECT)
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
     time = models.DateTimeField(auto_now_add=True)
