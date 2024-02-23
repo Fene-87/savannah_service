@@ -3,9 +3,7 @@
 {% load crispy_forms_tags socialaccount %}
 
 {% block content %}
-<a href="{% provider_login_url 'google' %}" class="btn btn-outline-danger">
-    <i class="fab fa-google"></i> Login with Google
-</a>
+
 
 <form method="post">
     {% csrf_token %}{{form|crispy}}

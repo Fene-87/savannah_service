@@ -9,9 +9,12 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-
+import os
 from pathlib import Path
+import dj_database_url
+from flask.cli import load_dotenv
 
+load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -37,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'rest_framework',
     'shop.apps.ShopConfig',
     'crispy_forms',
@@ -88,15 +92,21 @@ WSGI_APPLICATION = 'market.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'market',
+#         'USER': 'postgres',
+#         'PASSWORD': 'Marko254',
+#         'HOST': 'localhost',
+#     }
+# }
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'market',
-        'USER': 'postgres',
-        'PASSWORD': 'Marko254',
-        'HOST': 'localhost',
-    }
+    'default': dj_database_url.parse(os.getenv("DATABASE_URL"))
 }
+
+SITE_ID = 1
 
 
 # Password validation
@@ -134,6 +144,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
+MEDIA_URL = 'media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
