@@ -41,6 +41,12 @@ This is a Django project that is meant to work similarly to a shopping cart. A u
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+## 🚀 Video Demo <a name="live-demo"></a>
+
+Click on the link to view the app.
+
+- [Live Demo](https://vimeo.com/915959610/b24ca9bb5d?share=copy)
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
