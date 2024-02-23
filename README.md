@@ -72,12 +72,13 @@ pip install -r requirements. txt
 ```
 
 ### Usage
-To run the project, execute the following command:
+To run the project, execute the following commands:
 ``` sh
 python manage.py makemigrations
 python manage.py migrate
 python manage.py runserver
 ```
+There is an existing migration to prepopulate the items table.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
