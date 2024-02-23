@@ -1,5 +1,20 @@
 {% extends 'shop/base.html' %}
 {% block title %}Home{% endblock %}
 {% block content %}
-<h1>Home Page</h1>
+<h1>Products</h1>
+<ul>
+    {% for item in items %}
+        <li>
+            <div class="container">
+                Item: {{ item.item }} - sh{{ item.price }} / {{ item.unit }}
+            </div>
+            <form method="post" action="{% url 'create_order' %}">
+                {% csrf_token %}
+                <input type="hidden" name="item_id" value="{{ item.id }}">
+                <input type="hidden" name="amount" value="{{ item.price }}">
+                <button type="submit" class="btn btn-primary">Order</button>
+            </form>
+        </li>
+    {% endfor %}
+</ul>
 {% endblock %}

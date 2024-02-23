@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'shop.apps.ShopsConfig',
+    'shop.apps.ShopConfig',
     'crispy_forms',
     'crispy_bootstrap5',
     'allauth',
@@ -60,6 +60,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'market.urls'
@@ -147,14 +148,53 @@ AUTHENTICATION_BACKENDS = [
 LOGIN_REDIRECT_URL = '/home'
 LOGOUT_REDIRECT_URL = '/login'
 
+# SOCIALACCOUNT_PROVIDERS = {
+#     'google': {
+#         'APP': {
+#             'client_id': 'your-google-client-id',
+#             'secret': 'your-google-secret',
+#             'key': ''
+#         },
+#     }
+# }
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
-        'APP': {
-            'client_id': 'your-google-client-id',
-            'secret': 'your-google-secret',
-            'key': ''
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
         },
+        'OAUTH_PKCE_ENABLED': True,
+    },
+    "openid_connect": {
+        "APPS": [
+            {
+                "provider_id": "my-server",
+                "name": "My Login Server",
+                "client_id": "your.service.id",
+                "secret": "your.service.secret",
+                "settings": {
+                    "server_url": "https://my.server.example.com",
+                    # Optional token endpoint authentication method.
+                    # May be one of "client_secret_basic", "client_secret_post"
+                    # If omitted, a method from the the server's
+                    # token auth methods list is used
+                    "token_auth_method": "client_secret_basic",
+                },
+            },
+            {
+                "provider_id": "other-server",
+                "name": "Other Login Server",
+                "client_id": "your.other.service.id",
+                "secret": "your.other.service.secret",
+                "settings": {
+                    "server_url": "https://other.server.example.com",
+                },
+            },
+        ]
     }
 }
 
-AUTH_USER_MODEL = 'main.CustomUser'
+AUTH_USER_MODEL = 'shop.CustomUser'
