@@ -39,6 +39,10 @@ This is a Django project that is meant to work similarly to a shopping cart. A u
 - **Create orders**
 - Africa's Talking SMS gateway
 
+  User authentication is implemented. Social account is google. User cannot access the home page or even create orders.
+  The database implemented is PostgreSql, and is hosted on Render.
+  Once order is created, SMS is sent with order details.
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 🚀 Video Demo <a name="live-demo"></a>
